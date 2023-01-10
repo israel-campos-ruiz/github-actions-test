@@ -18,3 +18,18 @@ jobs:
     #  - name: run test
     #    run: yarn run test
 
+  deploy:
+   runs-on: ubuntu-latest
+   steps:
+     - name: get-code
+       uses: actions/checkout@v3
+     - name: set up node
+       uses: actions/setup-node@v3
+       with:
+         node-version: 16
+     - name: install dependencies
+       run: yarn install --immutable --immutable-cache
+     - name: build project 
+       run: yarn run build
+     - name: Deploy
+       run: echo "Deploying ..."
