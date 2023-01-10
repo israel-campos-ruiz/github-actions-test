@@ -1,0 +1,20 @@
+name: test-proyect
+on: 
+  push:
+    branches:
+      - "main"
+jobs:
+  test:
+   runs-on: ubuntu-latest
+   steps:
+     - name: get-code
+       uses: actions/checkout@v3
+     - name: set up node
+       uses: actions/setup-node@v3
+       with:
+         node-version: 16
+     - name: install dependencies
+       run: yarn install --immutable --immutable-cache
+     - name: run test
+       run: yarn run test
+
